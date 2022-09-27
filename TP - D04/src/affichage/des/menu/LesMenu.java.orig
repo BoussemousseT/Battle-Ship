@@ -1,0 +1,574 @@
+package affichage.des.menu;
+
+import java.awt.*;
+import java.awt.event.*;
+<<<<<<< HEAD
+=======
+import java.io.*;
+
+import javax.sound.sampled.*;
+>>>>>>> af0bcc9f1ade88410d8219ce56235cc2d020050f
+import javax.swing.*;
+
+public class LesMenu {
+
+	protected static JButton[][] buttonsMoi = new JButton[10][10]; // tableau du buttons moi
+	protected static JButton[][] buttonsAdversaire = new JButton[10][10]; // tableau du buttons adversaire
+	static JButton[] lesBoutonsNameAdversaire = new JButton[100];
+	static JButton[] lesBoutonsNameMoi = new JButton[100];
+
+	// methode pour creer un tableau de 100 buttons dans un panel (Moi)
+	protected static JPanel buttonPanelMoi() {
+		JPanel p = new JPanel();
+		p.setLayout(new GridLayout(10, 10));
+		MyButtonListnerTwo listener = new MyButtonListnerTwo();
+
+		for (int i = 0; i < 10; i++) {
+			for (int j = 0; j < 10; j++) {
+				buttonsMoi[i][j] = new JButton();
+<<<<<<< HEAD
+				p.add(buttonsMoi[i][j]).setBackground(Color.blue);
+=======
+				lesBoutonsNameMoi[MyInteger.incrementMoiButton] = buttonsMoi[i][j];
+				lesBoutonsNameMoi[MyInteger.incrementMoiButton].setName(String.valueOf(55));
+				p.add(buttonsMoi[i][j]).setBackground(Color.LIGHT_GRAY);
+				MyInteger.incrementMoiButton++;
+>>>>>>> af0bcc9f1ade88410d8219ce56235cc2d020050f
+			}
+		}
+		p.setPreferredSize(new Dimension(450, 450));
+		return p;
+	}
+
+	// methode pour creer un tableau de 100 buttons dans un panel (adversaire)
+
+	protected static JPanel buttonPanelAdversaire() {
+
+		JPanel p = new JPanel();
+		p.setLayout(new GridLayout(10, 10));
+		MyButtonListnerTwo listener = new MyButtonListnerTwo();
+
+		for (int i = 0; i < 10; i++) {
+			for (int j = 0; j < 10; j++) {
+				buttonsAdversaire[i][j] = new JButton();
+<<<<<<< HEAD
+				lesBoutons[MyInteger.increment] = buttonsAdversaire[i][j];
+				lesBoutons[MyInteger.increment].setName(String.valueOf(MyInteger.increment));
+				p.add(buttonsAdversaire[i][j]).setBackground(Color.blue);
+=======
+				lesBoutonsNameAdversaire[MyInteger.incrementAdversaireButton] = buttonsAdversaire[i][j];
+				lesBoutonsNameAdversaire[MyInteger.incrementAdversaireButton].setName(String.valueOf(66));
+				p.add(buttonsAdversaire[i][j]).setBackground(Color.LIGHT_GRAY);
+>>>>>>> af0bcc9f1ade88410d8219ce56235cc2d020050f
+				buttonsAdversaire[i][j].addActionListener(listener);
+				MyInteger.incrementAdversaireButton++;
+			}
+		}
+		p.setPreferredSize(new Dimension(450, 450));
+		return p;
+	}
+
+	// methode pour cree Label
+	private static JPanel addLabel(String label) {
+		JPanel p = new JPanel();
+		p.add(new Label(label));
+		return p;
+	}
+
+	// methode pour ajouter les bateaux aléatoirement (moi)
+	public static void bateauxAleatoireMoi(int caseBateau, Color c, String typeBateau) {
+		int i = (int) (Math.random() * 10);
+		int j = (int) (Math.random() * 10);
+
+		int verticalHorizontal = (int) (Math.random() * 2);
+
+		for (int k = 0; k < caseBateau; k++) {
+
+			if (verticalHorizontal == 0) {
+
+				if (j == 7 || j == 8 || j == 9) {
+					(buttonsMoi[i][j - k]).setBackground(c);
+<<<<<<< HEAD
+				} else {
+					(buttonsMoi[i][j + k]).setBackground(c);
+=======
+					if (typeBateau == "SousMarin") {
+						buttonsMoi[i][j - k].setName(String.valueOf(1));
+					} else {
+						buttonsMoi[i][j - k].setName(String.valueOf(caseBateau));
+					}
+				} else {
+					(buttonsMoi[i][j + k]).setBackground(c);
+					if (typeBateau == "SousMarin") {
+						buttonsMoi[i][j + k].setName(String.valueOf(1));
+					} else {
+						buttonsMoi[i][j + k].setName(String.valueOf(caseBateau));
+					}
+>>>>>>> af0bcc9f1ade88410d8219ce56235cc2d020050f
+				}
+			} else {
+				if (i == 7 || i == 8 || i == 9) {
+					(buttonsMoi[i - k][j]).setBackground(c);
+<<<<<<< HEAD
+				} else {
+					(buttonsMoi[i + k][j]).setBackground(c);
+=======
+					if (typeBateau == "SousMarin") {
+						buttonsMoi[i - k][j].setName(String.valueOf(1));
+					} else {
+						buttonsMoi[i - k][j].setName(String.valueOf(caseBateau));
+					}
+				} else {
+					(buttonsMoi[i + k][j]).setBackground(c);
+					if (typeBateau == "SousMarin") {
+						buttonsMoi[i + k][j].setName(String.valueOf(1));
+					} else {
+						buttonsMoi[i + k][j].setName(String.valueOf(caseBateau));
+					}
+>>>>>>> af0bcc9f1ade88410d8219ce56235cc2d020050f
+				}
+			}
+
+		}
+
+	}
+
+	// methode pour ajouter les bateaux aléatoirement (Adversaire)
+	public static void bateauxAleatoireAdversaire(int caseBateau, Color c, String typeBateau) {
+		int i = (int) (Math.random() * 10);
+		int j = (int) (Math.random() * 10);
+		int verticalHorizontal = (int) (Math.random() * 2);
+		for (int k = 0; k < caseBateau; k++) {
+
+			if (verticalHorizontal == 0) {
+
+				if (j == 7 || j == 8 || j == 9) {
+				//	(buttonsAdversaire[i][j - k]).setBackground(c);
+					if (typeBateau == "SousMarin") {
+						buttonsAdversaire[i][j - k].setName(String.valueOf(1));
+					} else {
+						buttonsAdversaire[i][j - k].setName(String.valueOf(caseBateau));
+					}
+				} else {
+					//(buttonsAdversaire[i][j + k]).setBackground(c);
+					if (typeBateau == "SousMarin") {
+						buttonsAdversaire[i][j + k].setName(String.valueOf(1));
+					} else {
+						buttonsAdversaire[i][j + k].setName(String.valueOf(caseBateau));
+					}
+				}
+			} else {
+				if (i == 7 || i == 8 || i == 9) {
+					//(buttonsAdversaire[i - k][j]).setBackground(c);
+					if (typeBateau == "SousMarin") {
+						buttonsAdversaire[i - k][j].setName(String.valueOf(1));
+					} else {
+						buttonsAdversaire[i - k][j].setName(String.valueOf(caseBateau));
+					}
+				} else {
+				//	(buttonsAdversaire[i + k][j]).setBackground(c);
+					if (typeBateau == "SousMarin") {
+						buttonsAdversaire[i + k][j].setName(String.valueOf(1));
+					} else {
+						buttonsAdversaire[i + k][j].setName(String.valueOf(caseBateau));
+					}
+				}
+			}
+		}
+	}
+
+	// methode pour restart
+	public static void reset() {
+		MyInteger.incrementAdversaireButton = 0;
+		MyInteger.incrementMoiButton = 0;
+		MyInteger.sousMarinEnnemis = 0;
+		MyInteger.destroyerEnnemis = 0;
+		MyInteger.portAvionEnnemis = 0;
+		MyInteger.bPatrouilleEnnemis = 0;
+		MyInteger.sousMarinMoi = 0;
+		MyInteger.destroyerMoi = 0;
+		MyInteger.portAvionMoi = 0;
+		MyInteger.bPatrouilleMoi = 0;
+
+		for (int i = 0; i < 10; i++) {
+			for (int j = 0; j < 10; j++) {
+<<<<<<< HEAD
+				LesMenu.buttonsMoi[i][j].setBackground(Color.blue);
+				LesMenu.buttonsAdversaire[i][j].setBackground(Color.blue);
+=======
+				LesMenu.buttonsMoi[i][j].setBackground(Color.lightGray);
+				LesMenu.buttonsAdversaire[i][j].setBackground(Color.lightGray);
+				lesBoutonsNameAdversaire[MyInteger.incrementAdversaireButton].setName(String.valueOf(66));
+				lesBoutonsNameMoi[MyInteger.incrementMoiButton].setName(String.valueOf(55));
+				MyInteger.incrementAdversaireButton++;
+				MyInteger.incrementMoiButton++;
+
+>>>>>>> af0bcc9f1ade88410d8219ce56235cc2d020050f
+			}
+		}
+	}
+
+<<<<<<< HEAD
+	static JFrame menuFrame = new JFrame("BattleShip Game");
+=======
+//	public static void menuPrincipale() {
+//
+//	};
+>>>>>>> af0bcc9f1ade88410d8219ce56235cc2d020050f
+
+	public static void fenetre(int tailleX, int tailleY) {
+
+		if (tailleX <= 0) { tailleX = 1200; }
+		if (tailleY <= 0) { tailleY = 700; }
+		
+		// Creating main Window
+		menuFrame.setSize(tailleX, tailleY);
+		menuFrame.setLocationRelativeTo(null);
+		
+		JPanel menuJPanel = new JPanel();
+		menuJPanel.setBackground(Color.GRAY);
+
+		MyButtonListner myListener = new MyButtonListner();
+
+		// Adding game panel
+
+		// Player A & Player B
+		JPanel topMenu = new JPanel();
+		topMenu.setOpaque(false);
+		topMenu.setLayout(new GridLayout(1, 3));
+
+		JLabel PlayerA = new JLabel("Player A", SwingConstants.CENTER);
+		PlayerA.setBorder(BorderFactory.createBevelBorder(1, Color.BLACK, Color.BLACK));
+		PlayerA.setBackground(novColor(212, 26, 255));
+		PlayerA.setOpaque(true);
+		topMenu.add(PlayerA);
+
+		String[] buttonNames = { "Reset", "Aleatoire", "Accueil", "Quitter" };
+		String[] actionCommands = { "reset", "aleatoire", "accueil", "sortie" };
+
+		JPanel lesButtonDemarrageJPanel = new JPanel();
+		lesButtonDemarrageJPanel.setLayout(new GridLayout(2, 2));
+		for (int i = 0; i < buttonNames.length; i++) {
+			JButton button = new JButton(buttonNames[i]);
+			button.setBackground(Color.DARK_GRAY);
+			button.setActionCommand(actionCommands[i]);
+			button.addActionListener(myListener);
+			lesButtonDemarrageJPanel.add(button).setForeground(Color.white);
+		}
+		topMenu.add(lesButtonDemarrageJPanel);
+
+		JLabel PlayerB = new JLabel("Player B", SwingConstants.CENTER);
+		PlayerB.setBorder(BorderFactory.createBevelBorder(1, Color.BLACK, Color.BLACK));
+		PlayerB.setBackground(novColor(36, 136, 255));
+		PlayerB.setOpaque(true);
+		topMenu.add(PlayerB);
+
+		topMenu.setPreferredSize(new Dimension(1100, 100));
+
+		// menuFrame.setLayout(new GridLayout(3, 1));
+		menuJPanel.setLayout(new FlowLayout());
+
+		// Game Buttons
+		JPanel lesButtonJPanel = new JPanel();
+		lesButtonJPanel.setOpaque(true);
+		lesButtonJPanel.setBackground(Color.GRAY);
+		lesButtonJPanel.setPreferredSize(new Dimension(1100, 50));
+		;
+		lesButtonJPanel.setLayout(new FlowLayout());
+		lesButtonJPanel.add(addLabel("Porte avion")).setBackground(novColor(255, 67, 238));
+		lesButtonJPanel.add(addLabel("Destroyer")).setBackground(novColor(76, 143, 255));
+		lesButtonJPanel.add(addLabel("Sous-marin")).setBackground(novColor(164, 255, 64));
+		lesButtonJPanel.add(addLabel("Bateau patrouille")).setBackground(novColor(255, 116, 61));
+
+		menuJPanel.add(topMenu);
+		menuJPanel.add(lesButtonJPanel);
+
+		// Add Game Level
+		JPanel etageDuJeuxJPanel = new JPanel();
+		etageDuJeuxJPanel.setOpaque(false);
+		etageDuJeuxJPanel.setLayout(new FlowLayout());
+
+		etageDuJeuxJPanel.add(buttonPanelMoi());
+
+		String textStringTest = "";
+
+		// Add Distance between Game Grids
+		JPanel separationJPanel = new JPanel();
+		separationJPanel.setOpaque(false);
+		separationJPanel.setLayout(new GridLayout(5, 1));
+		separationJPanel.add(new JLabel("           <<< Information >>>           "));
+		separationJPanel.add(new JLabel(" ------------------------------------------- "));
+		JLabel textInformation = new JLabel(textStringTest, SwingConstants.CENTER);
+		textInformation.setOpaque(false);
+		textInformation.setPreferredSize(new Dimension(30, 60));
+		separationJPanel.add(textInformation).setForeground(Color.red);
+		separationJPanel.add(new JLabel(" ------------------------------------------- "));
+		separationJPanel.add(new JLabel("       <<< Bonne Chance >>>     "));
+
+		etageDuJeuxJPanel.add(separationJPanel);
+
+		etageDuJeuxJPanel.add(buttonPanelAdversaire());
+
+		menuJPanel.add(etageDuJeuxJPanel);
+
+		// Add bottom layer
+		JPanel bottomLayerJPanel = new JPanel();
+		bottomLayerJPanel.setPreferredSize(new Dimension(1100, 40));
+		bottomLayerJPanel.setBackground(Color.DARK_GRAY);
+		bottomLayerJPanel.add(new JLabel(" Antoine Ouellet /// Taoufik Boussemousse ")).setForeground(Color.white);
+
+		menuJPanel.add(bottomLayerJPanel);
+
+		// show window and force close of program
+
+		menuFrame.add(menuJPanel);
+		menuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		menuFrame.setVisible(true);
+	}
+
+	public static Color novColor(int R, int G, int B) {
+		Color p = new Color(R, G, B);
+		return p;
+	}
+
+	public static void Music() {
+		// Sons = new FileInputStream(new File("PC.mid"));
+		// AudioInputStream ais = new AudioInputStream(sons);
+		// AudioPlayer.player.start(ais);
+	}
+	
+	public static void AfficherRetirer (boolean yN) {
+		menuFrame.setVisible(yN);
+	}
+	
+}
+<<<<<<< HEAD
+	class MyButtonListner extends LesMenu implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			JButton button = (JButton) e.getSource();
+
+			String action = button.getActionCommand();
+
+			switch (action) {
+			case "reset":
+				reset();
+				break;
+			case "aleatoire":
+				reset();
+
+				LesMenu.bateauxAleatoireMoi(4, novColor(255, 67, 238), "PorteAvion");
+				LesMenu.bateauxAleatoireMoi(3, novColor(76, 143, 255), "Destroyer");
+				LesMenu.bateauxAleatoireMoi(3, novColor(164, 255, 64), "SousMarin");
+				LesMenu.bateauxAleatoireMoi(2, novColor(255, 116, 61), "BateauPatrouille");
+				LesMenu.bateauxAleatoireAdversaire(4, novColor(255, 67, 238));
+				LesMenu.bateauxAleatoireAdversaire(3, novColor(76, 143, 255));
+				LesMenu.bateauxAleatoireAdversaire(3, novColor(164, 255, 64));
+				LesMenu.bateauxAleatoireAdversaire(2, novColor(255, 116, 61));
+//			int a = 0;
+=======
+
+class MyButtonListner extends LesMenu implements ActionListener {
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		JButton button = (JButton) e.getSource();
+
+		String action = button.getActionCommand();
+
+		switch (action) {
+		case "reset":
+			reset();
+
+			break;
+		case "aleatoire":
+			reset();
+
+			LesMenu.bateauxAleatoireMoi(4, novColor(255, 67, 238), "PorteAvion");
+			LesMenu.bateauxAleatoireMoi(3, novColor(76, 143, 255), "Destroyer");
+			LesMenu.bateauxAleatoireMoi(3, novColor(164, 255, 64), "SousMarin");
+			LesMenu.bateauxAleatoireMoi(2, novColor(255, 116, 61), "BateauPatrouille");
+			LesMenu.bateauxAleatoireAdversaire(4, novColor(255, 67, 238), "PorteAvion");
+			LesMenu.bateauxAleatoireAdversaire(3, novColor(76, 143, 255), "Destroyer");
+			LesMenu.bateauxAleatoireAdversaire(3, novColor(164, 255, 64), "SousMarin");
+			LesMenu.bateauxAleatoireAdversaire(2, novColor(255, 116, 61), "BateauPatrouille");
+
+>>>>>>> af0bcc9f1ade88410d8219ce56235cc2d020050f
+//			for (int i = 0; i < 10; i++) {
+//				for (int j = 0; j < 10; j++) {
+//
+//					System.out.println(LesMenu.buttonsMoi[i][j].getName());
+//					System.out.println(LesMenu.buttonsAdversaire[i][j].getName());
+//				}
+//			}
+<<<<<<< HEAD
+				break;
+			case "accueil":
+=======
+
+			break;
+		case "Acceuil":
+>>>>>>> af0bcc9f1ade88410d8219ce56235cc2d020050f
+
+				MenuPrincipale.AfficherRetirer(true);
+				AfficherRetirer(false);
+				
+				break;
+
+			case "sortie":
+				menuFrame.dispose();
+				break;
+			}
+		}
+	}
+
+	class MyButtonListnerTwo extends LesMenu implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			JButton button = (JButton) e.getSource();
+			String name = button.getName();
+			int val = Integer.valueOf(name);
+
+<<<<<<< HEAD
+			String urlString = "Waves.jpg";
+			ImageIcon icon = new ImageIcon(urlString);
+=======
+		JButton randomAdversaire;
+		do {
+			randomAdversaire = lesBoutonsNameMoi[(int) (Math.random() * 100)];
+		} while (Integer.valueOf(randomAdversaire.getName()) == -1 || Integer.valueOf(randomAdversaire.getName()) == 0);
+
+		switch (val) {
+		case 1:
+			button.setBackground(Color.red);
+			System.out.println("Le sous-marin de l'ennemis a ete toucher");
+			MyInteger.sousMarinEnnemis++;
+			if (MyInteger.sousMarinEnnemis == 3) {
+				System.out.println("NIIICEE !! Le sous-marin de l'ennemis est couler");
+			}
+			button.setName("-1");
+
+			break;
+		case 2:
+			button.setBackground(Color.red);
+			System.out.println("Le bateau patrouille de l'ennemis a ete toucher");
+			MyInteger.bPatrouilleEnnemis++;
+			if (MyInteger.bPatrouilleEnnemis == 2) {
+				System.out.println("NIIICEE !! Le bateau patrouille de l'ennemis est couler");
+			}
+			button.setName("-1");
+
+			break;
+		case 3:
+			button.setBackground(Color.red);
+			System.out.println("Le destroyer de l'ennemis  a ete toucher");
+			MyInteger.destroyerEnnemis++;
+			if (MyInteger.destroyerEnnemis == 3) {
+				System.out.println("NIIICEE !! Le destroyer de l'ennemis est couler");
+			}
+			button.setName("-1");
+
+			break;
+		case 4:
+			button.setBackground(Color.red);
+			System.out.println("Le porte avion de l'ennemis a ete toucher");
+			MyInteger.portAvionEnnemis++;
+			if (MyInteger.portAvionEnnemis == 4) {
+				System.out.println("NIIICEE !! Le porte avion de l'ennemis est couler");
+			}
+			button.setName("-1");
+			break;
+
+		default:
+			if (val == -1) {
+				button.setBackground(Color.red);
+			} else {
+				button.setBackground(Color.black);
+			}
+		}
+
+		switch (Integer.valueOf(randomAdversaire.getName())) {
+		case 1:
+			randomAdversaire.setBackground(Color.red);
+			System.err.println("Votre sous-marin a ete toucher");
+			MyInteger.sousMarinMoi++;
+			if (MyInteger.sousMarinMoi == 3) {
+				System.err.println("ATTENTION !! Votre sous-marin est couler");
+			}
+			randomAdversaire.setName("0");
+			break;
+		case 2:
+			randomAdversaire.setBackground(Color.red);
+			System.err.println("Votre bateau patrouille a ete toucher");
+			MyInteger.bPatrouilleMoi++;
+			if (MyInteger.bPatrouilleMoi == 2) {
+				System.err.println("ATTENTION !! Votre bateau patrouille est couler");
+			}
+			randomAdversaire.setName("0");
+			break;
+		case 3:
+			randomAdversaire.setBackground(Color.red);
+			System.err.println("Votre destroyer a ete toucher");
+			MyInteger.destroyerMoi++;
+			if (MyInteger.destroyerMoi == 3) {
+				System.err.println("ATTENTION !! Votre destroyer est couler");
+			}
+			randomAdversaire.setName("0");
+			break;
+		case 4:
+			randomAdversaire.setBackground(Color.red);
+			System.err.println("Votre porte avion a ete toucher");
+			MyInteger.portAvionMoi++;
+			if (MyInteger.portAvionMoi == 4) {
+				System.err.println("ATTENTION !! Votre porte avion est couler");
+			}
+			randomAdversaire.setName("0");
+			break;
+
+		default:
+			if (Integer.valueOf(randomAdversaire.getName()) == 0) {
+				randomAdversaire.setBackground(Color.red);
+			} else {
+				randomAdversaire.setBackground(Color.black);
+				randomAdversaire.setName("-1");
+			}
+		}
+		if (MyInteger.bPatrouilleMoi == 2 && MyInteger.destroyerMoi == 3 && MyInteger.sousMarinMoi == 3
+				&& MyInteger.portAvionMoi == 4) {
+			System.err.println("GAMEOVER !! Vous avez perdu !");
+			reset();
+
+		} else if (MyInteger.bPatrouilleEnnemis == 2 && MyInteger.destroyerEnnemis == 3
+				&& MyInteger.sousMarinEnnemis == 3 && MyInteger.portAvionEnnemis == 4) {
+			System.out.println("BRAVO !! Vous avez gagner !");
+			reset();
+		}
+>>>>>>> af0bcc9f1ade88410d8219ce56235cc2d020050f
+
+			lesBoutons[val].setIcon(icon);
+
+		}
+
+<<<<<<< HEAD
+	}
+
+	class MyInteger {
+		public static int increment = 0;
+	}
+=======
+class MyInteger {
+	public static int incrementAdversaireButton = 0;
+	public static int incrementMoiButton = 0;
+	public static int sousMarinEnnemis = 0;
+	public static int destroyerEnnemis = 0;
+	public static int portAvionEnnemis = 0;
+	public static int bPatrouilleEnnemis = 0;
+	public static int sousMarinMoi = 0;
+	public static int destroyerMoi = 0;
+	public static int portAvionMoi = 0;
+	public static int bPatrouilleMoi = 0;
+
+}
+>>>>>>> af0bcc9f1ade88410d8219ce56235cc2d020050f
